@@ -13,28 +13,25 @@ public class AuthenticationValidator {
             throws WrongPasswordException {
         checkLogin(login);
         checkPassword(password);
-        checkConfirmedPassword(password,confirmedPassword);
+        checkConfirmedPassword(password, confirmedPassword);
     }
 
 
-        private static void checkLogin(String login) {
+    private static void checkLogin(String login) {
 
-            if (login.length() > 20) {
-                throw new WrongLoginException("Логин должен быть меньше 20 символов");
-            }
-                if (!login.matches(regex.pattern())) {
-                    throw new WrongLoginException("Логин содержит недупустимый символ");
-                }
-            }
-
-    private static void checkPassword(String password) throws WrongPasswordException{
-       if (!password.matches(regex.pattern())){
-           throw new WrongPasswordException("Пароль должен содержать в себе только латинские " +
-                   "буквы цифры и знак подчеркивания и содержать меньше 20 символов");
-       }
+        if (!login.matches(regex.pattern())) {
+            throw new WrongLoginException("Логин содержит недупустимый символ");
+        }
     }
 
-    private static void checkConfirmedPassword(String password, String confirmedPassword) throws WrongPasswordException{
+    private static void checkPassword(String password) throws WrongPasswordException {
+        if (!password.matches(regex.pattern())) {
+            throw new WrongPasswordException("Пароль должен содержать в себе только латинские " +
+                    "буквы цифры и знак подчеркивания и содержать меньше 20 символов");
+        }
+    }
+
+    private static void checkConfirmedPassword(String password, String confirmedPassword) throws WrongPasswordException {
         if (!password.equals(confirmedPassword)) {
             throw new WrongPasswordException("Пароль и повторный пароль не совпадают");
         }
